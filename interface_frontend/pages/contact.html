@@ -1,0 +1,138 @@
+<section class="page-hero">
+    <div class="container">
+        <h1 class="center">Contact & Accès</h1>
+    </div>
+</section>
+
+<section class="contact-section container">
+    <div class="grid contact-grid">
+        <div class="contact-info">
+            <h2>Retrouvez-nous</h2>
+            <div class="info-item">
+                <strong>Adresse</strong>
+                <p>8, boulevard du Sakura, 56000 Vannes</p>
+            </div>
+            <div class="info-item">
+                <strong>Téléphone</strong>
+                <p>02 40 50 60 70</p>
+            </div>
+            <div class="info-item">
+                <strong>Horaires</strong>
+                <p>Mardi — Jeudi : 11h45–14h / 18h45–22h</p>
+                <p>Vendredi — Samedi : 11h45–14h / 18h45–22h30</p>
+                <p>Lundi & Dimanche : Fermé</p>
+            </div>
+            <div class="info-item">
+                <p class="accent-text">Sans réservation</p>
+            </div>
+        </div>
+
+        <div class="contact-form-wrapper">
+            <h2>Nous écrire</h2>
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="alert alert-success"><?= $_SESSION['success'] ?></div>
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+
+            <form action="/contact" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nom complet</label>
+                    <input type="text" id="name" name="name" required placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Sujet</label>
+                    <input type="text" id="subject" name="subject" placeholder="Sujet de votre message">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required rows="6" placeholder="Comment pouvons-nous vous aider ?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit">Envoyer le message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<style>
+.contact-grid {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    padding-bottom: 120px;
+}
+
+.info-item {
+    margin-bottom: 30px;
+}
+
+.info-item strong {
+    display: block;
+    color: var(--accent-red);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.accent-text {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--accent-pink);
+}
+
+.contact-form .form-group {
+    margin-bottom: 25px;
+}
+
+.contact-form label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+}
+
+.btn-submit {
+    width: 100%;
+    background: var(--accent-red);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background: var(--accent-pink);
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background: #E8F5E9;
+    color: #2E7D32;
+    border: 1px solid #C8E6C9;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+</style>

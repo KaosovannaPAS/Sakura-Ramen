@@ -1,0 +1,45 @@
+<div class="actions">
+    <a href="/admin/menu/add" class="btn btn-primary">Ajouter un produit</a>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Badge(s)</th>
+            <th>Disponible</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($items as $item): ?>
+            <tr>
+                    <td data-label="ID"><?= $item['id'] ?></td>
+                    <td data-label="Image">
+                        <?php if ($item['image_url']): ?>
+                            <img src="<?= $item['image_url'] ?>" width="40" height="40" style="object-fit: cover; border-radius: 4px;">
+                        <?php else: ?>
+                            <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 4px;"></div>
+                        <?php endif; ?>
+                    </td>
+                    <td data-label="Nom"><?= $item['name'] ?></td>
+                    <td data-label="Prix"><?= number_format($item['price'], 2, ',', ' ') ?> €</td>
+                    <td data-label="Badge(s)">
+                        <?php 
+                            $badges = json_decode($item['badges'], true);
+                            if ($badges) echo implode(', ', $badges);
+                        ?>
+                    </td>
+                    <td data-label="Disponible"><?= $item['is_available'] ? 'Oui' : 'Non' ?></td>
+                    <td data-label="Actions" class="table-actions">
+                        <a href="/admin/menu/edit/<?= $item['id'] ?>" class="btn-edit">Modifier</a>
+                        <a href="/admin/menu/delete/<?= $item['id'] ?>" class="btn-delete" onclick="return confirm('Supprimer ?')">Supprimer</a>
+                    </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+

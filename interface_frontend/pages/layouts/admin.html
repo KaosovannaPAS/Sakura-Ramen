@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $title ?? 'Admin — Sakura Ramen' ?></title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Sakura Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="/admin">Dashboard</a></li>
+                    <li><a href="/admin/menu">Gestion de la Carte</a></li>
+                    <li><a href="/admin/team">L'Équipe</a></li>
+                    <li><a href="/admin/schedules">Horaires</a></li>
+                    <li><a href="/admin/pages">Pages CMS</a></li>
+                    <li><a href="/admin/messages">Messages</a></li>
+                    <li><a href="/admin/settings">Paramètres</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="/admin/logout" class="logout-link">Déconnexion</a>
+                <a href="/" target="_blank" class="site-link">Voir le site</a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <h1><?= $title ?></h1>
+                <div class="user-info">
+                    Bonjour, <?= $_SESSION['username'] ?? 'Admin' ?>
+                </div>
+            </header>
+            
+            <section class="admin-content">
+                <?= $content ?>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

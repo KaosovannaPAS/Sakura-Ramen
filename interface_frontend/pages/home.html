@@ -1,0 +1,203 @@
+<section class="home-hero">
+    <div class="hero-center reveal">
+        <div class="hero-image-container">
+            <img src="/img/hero_ramen_bowl.png" alt="Bol de Ramen Signature Sakura" class="hero-main-img">
+        </div>
+    </div>
+</section>
+
+<section class="home-intro reveal">
+    <div class="container narrow">
+        <h2 class="section-title">L'art du Ramen,<br>l'esprit Sakura</h2>
+        <p class="large-text">Plus qu'un simple repas, le ramen est une quête d'équilibre. Notre bouillon, patiemment mijoté, capture l'essence de l'Umami pour vous offrir un moment de réconfort absolu.</p>
+        <div class="cta-reveal">
+            <a href="/carte" class="btn-primary">Découvrir la carte</a>
+        </div>
+    </div>
+</section>
+
+<section class="home-split reveal">
+    <div class="split-image" style="background-image: url('/img/sakura_ramen_hero_dark.png')"></div>
+    <div class="split-content">
+        <div class="content-box">
+            <span class="step-num">01</span>
+            <h3>Le Bouillon</h3>
+            <p>Une infusion lente de 12 heures d'ingrédients nobles pour une profondeur inégalée. La base de notre signature.</p>
+        </div>
+    </div>
+</section>
+
+<section class="home-split reverse reveal">
+    <div class="split-image" style="background-image: url('/img/sakura_restaurant_ambiance.png')"></div>
+    <div class="split-content">
+        <div class="content-box">
+            <span class="step-num">02</span>
+            <h3>L'Atmosphère</h3>
+            <p>Un espace pensé pour la sérénité. Bois brûlé, lumières tamisées et l'ombre délicate des fleurs de cerisier.</p>
+        </div>
+    </div>
+</section>
+
+<section class="home-menu-teaser reveal">
+    <div class="container narrow">
+        <h2 class="section-title">Quelques Signatures</h2>
+        <div class="teaser-list">
+            <div class="dotted-leader">
+                <span class="item">Shio Ramen Sakura</span>
+                <span class="dot-line"></span>
+                <span class="price">14,50 €</span>
+            </div>
+            <div class="dotted-leader">
+                <span class="item">Tonkotsu Classic</span>
+                <span class="dot-line"></span>
+                <span class="price">16,00 €</span>
+            </div>
+            <div class="dotted-leader">
+                <span class="item">Tantanmen Épicé</span>
+                <span class="dot-line"></span>
+                <span class="price">15,50 €</span>
+            </div>
+        </div>
+        <div class="center" style="margin-top: 50px;">
+            <a href="/carte" class="btn-primary">Voir toute la carte</a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Home Specific Styles */
+.home-hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.home-hero h1 {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    margin-bottom: 10px;
+    color: var(--accent-pink);
+    line-height: 1;
+}
+
+.home-hero .subtitle {
+    font-size: 1rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+}
+
+.hero-image-container {
+    margin-top: 30px;
+    perspective: 1000px;
+}
+
+.hero-main-img {
+    max-width: 600px;
+    width: 90%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 105, 180, 0.2);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: floatRamen 6s ease-in-out infinite;
+}
+
+.hero-main-img:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+@keyframes floatRamen {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+.home-intro {
+    padding: 150px 0;
+    text-align: center;
+}
+
+.container.narrow {
+    max-width: 900px;
+}
+
+.large-text {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.home-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+    border-top: 1px solid var(--border-color);
+}
+
+.home-split.reverse {
+    direction: rtl;
+}
+
+.home-split.reverse .split-content {
+    direction: ltr;
+}
+
+.split-image {
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(20%) brightness(80%);
+}
+
+.split-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
+    background-color: var(--surface-color);
+}
+
+.content-box {
+    max-width: 400px;
+}
+
+.content-box h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.step-num {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--accent-pink);
+    margin-bottom: 15px;
+}
+
+.home-menu-teaser {
+    padding: 150px 0;
+}
+
+.teaser-list {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.center { text-align: center; }
+
+@media (max-width: 900px) {
+    .home-hero h1 {
+        font-size: 3rem;
+    }
+    .home-split {
+        grid-template-columns: 1fr;
+    }
+    .split-image {
+        height: 60vh;
+    }
+}
+</style>

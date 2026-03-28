@@ -1,0 +1,17 @@
+# Documentation and IDE
+.vscode/
+
+# Environment and Secrets
+.env
+
+# Dependencies
+node_modules/
+noyau_backend/realtime/node_modules/
+
+# Database and logs
+noyau_backend/database/data/
+*.log
+
+# System files
+.DS_Store
+Thumbs.db

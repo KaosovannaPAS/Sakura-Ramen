@@ -1,0 +1,141 @@
+<section class="team-hero-section reveal">
+    <div class="container center">
+        <h1 class="stencil-title">L'ÉQUIPE</h1>
+        <p class="subtitle-ryoko">Les visages derrière la passion.</p>
+    </div>
+</section>
+
+<div class="team-page-wrapper">
+    <?php foreach ($members as $index => $member): ?>
+        <article class="ryoko-member-section reveal" aria-labelledby="member-name-<?= $index ?>">
+            <div class="container">
+                <div class="member-name-header">
+                    <h2 class="ryoko-member-name" id="member-name-<?= $index ?>"><?= strtoupper($member['name']) ?></h2>
+                </div>
+                
+                <div class="member-content-flex <?= $index % 2 != 0 ? 'reverse' : '' ?>">
+                    <div class="member-line-side">
+                        <div class="ryoko-vertical-line"></div>
+                    </div>
+                    
+                    <div class="member-main-content">
+                        <div class="member-image-box">
+                            <img src="<?= $member['image'] ?? '/img/sakura_restaurant_ambiance.png' ?>" alt="Portrait de <?= $member['name'] ?>, <?= $member['role'] ?> chez Sakura Ramen" class="team-portrait" loading="lazy">
+                        </div>
+                        
+                        <div class="member-bio-box">
+                            <h3 class="ryoko-member-role"><?= strtoupper($member['role']) ?></h3>
+                            <p class="ryoko-member-bio"><?= $member['bio'] ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    <?php endforeach; ?>
+</div>
+
+<style>
+.team-hero-section {
+    padding: 200px 0 100px;
+    text-align: center;
+}
+
+.team-page-wrapper {
+    padding-bottom: 150px;
+}
+
+.ryoko-member-section {
+    margin-bottom: 180px;
+}
+
+.ryoko-member-name {
+    color: var(--accent-pink);
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 200;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    line-height: 1.2;
+}
+
+.member-content-flex {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+}
+
+.member-content-flex.reverse {
+    flex-direction: row-reverse;
+}
+
+.member-line-side {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.ryoko-vertical-line {
+    width: 1px;
+    height: 100%;
+    background-color: var(--accent-pink);
+    opacity: 0.6;
+}
+
+.member-main-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.member-content-flex.reverse .member-main-content {
+    direction: ltr; /* Ensure text/image order is handled by grid or flex */
+}
+
+.member-image-box {
+    width: 100%;
+    overflow: hidden;
+}
+
+.team-portrait {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    filter: brightness(0.8) contrast(1.1);
+    transition: transform 1s ease;
+}
+
+.ryoko-member-section:hover .team-portrait {
+    transform: scale(1.05);
+}
+
+.ryoko-member-role {
+    font-size: 1.1rem;
+    letter-spacing: 5px;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.ryoko-member-bio {
+    font-size: 1rem;
+    line-height: 2;
+    color: var(--text-secondary);
+    max-width: 500px;
+}
+
+@media (max-width: 1024px) {
+    .member-main-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .ryoko-member-name {
+        letter-spacing: 0.2em;
+        font-size: 2.5rem;
+    }
+    .member-line-side {
+        width: 40px;
+    }
+}
+</style>

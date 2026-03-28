@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $title ?? 'Sakura Ramen' ?></title>
+    <meta name="description" content="<?= $meta_description ?? '' ?>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Sakura Ramen Team">
+    <meta name="keywords" content="ramen, japanese food, vannes, sakura ramen, authentic ramen, restaurant japonais">
+    <meta property="og:title" content="<?= $title ?? 'Sakura Ramen' ?>">
+    <meta property="og:description" content="<?= $meta_description ?? '' ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sakura-ramen.vercel.app<?= $_SERVER['REQUEST_URI'] ?>">
+    <meta property="og:image" content="https://sakura-ramen.vercel.app/img/sakura_ramen_hero_dark.png">
+    <link rel="canonical" href="https://sakura-ramen.vercel.app<?= $_SERVER['REQUEST_URI'] ?>">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Passer au contenu</a>
+
+    <header id="main-header" class="reveal">
+        <div class="container">
+            <input type="checkbox" id="mobile-nav-toggle" class="mobile-nav-toggle">
+            <label for="mobile-nav-toggle" class="mobile-nav-toggle-label">
+                <span></span>
+            </label>
+
+            <div class="logo">
+                <a href="/" aria-label="Sakura Ramen Home">Sakura Ramen</a>
+                <p class="logo-tagline">Comptoir à Ramen Artisanal — Vannes</p>
+            </div>
+            <nav aria-label="Menu principal">
+                <ul class="nav-links">
+                    <li><a href="/le-restaurant" <?= $_SERVER['REQUEST_URI'] == '/le-restaurant' ? 'class="active"' : '' ?>>Le Restaurant</a></li>
+                    <li><a href="/equipe" <?= $_SERVER['REQUEST_URI'] == '/equipe' ? 'class="active"' : '' ?>>L'équipe</a></li>
+                    <li><a href="/carte" <?= $_SERVER['REQUEST_URI'] == '/carte' ? 'class="active"' : '' ?>>La Carte</a></li>
+                    <li><a href="/commander" <?= $_SERVER['REQUEST_URI'] == '/commander' ? 'class="active"' : '' ?>>Commander</a></li>
+                    <li><a href="/contact" <?= $_SERVER['REQUEST_URI'] == '/contact' ? 'class="active"' : '' ?>>Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <?= $content ?>
+    </main>
+
+    <footer id="main-footer" class="reveal" role="contentinfo">
+        <div class="container grid">
+            <section class="footer-col">
+                <h3>Le Comptoir</h3>
+                <address>
+                    8, boulevard du Sakura<br>56000 Vannes<br>
+                    <a href="tel:0240506070">02 40 50 60 70</a>
+                </address>
+            </section>
+            <section class="footer-col">
+                <h3>Horaires</h3>
+                <p>Mardi — Jeudi : <time datetime="11:45">11h45</time>–<time datetime="14:00">14h</time> / <time datetime="18:45">18h45</time>–<time datetime="22:00">22h</time></p>
+                <p>Vendredi — Samedi : <time datetime="11:45">11h45</time>–<time datetime="14:00">14h</time> / <time datetime="18:45">18h45</time>–<time datetime="22:30">22h30</time></p>
+            </section>
+            <nav class="footer-col" aria-label="Réseaux sociaux">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#" target="_blank" aria-label="Instagram de Sakura Ramen">Instagram</a>
+                    <a href="#" target="_blank" aria-label="Facebook de Sakura Ramen">Facebook</a>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.7rem; letter-spacing: 2px;">Sans réservation</p>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <?= date('Y') ?> Sakura Ramen — <a href="/mentions-legales">Mentions Légales</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+    
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

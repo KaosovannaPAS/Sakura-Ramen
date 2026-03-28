@@ -1,0 +1,112 @@
+services:
+  # PHP Apache Service
+  php-apache:
+    build:
+      context: .
+      dockerfile: ./docker/php.dockerfile
+    container_name: sakura_php
+    ports:
+      - "8011:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_NAME=sakura_ramen
+      - DB_USER=sakura_user
+      - DB_PASS=sakura_password
+      - MONGO_URI=mongodb://mongodb:27017/sakura_logs
+    depends_on:
+      - mysql
+      - mongodb
+    networks:
+      - sakura-network
+
+  # MySQL Database Service
+  mysql:
+    image: mysql:8.0
+    container_name: sakura_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: sakura_ramen
+      MYSQL_USER: sakura_user
+      MYSQL_PASSWORD: sakura_password
+      MYSQL_ROOT_PASSWORD: root_password
+    ports:
+      - "3311:3306"
+    volumes:
+      - ./noyau_backend/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+    networks:
+      - sakura-network
+
+  # phpMyAdmin for MySQL management
+  phpmyadmin:
+    image: phpmyadmin:5.2
+    container_name: sakura_pma
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - "8012:80"
+    depends_on:
+      - mysql
+    networks:
+      - sakura-network
+
+  # Node.js Real-time Service
+  node-app:
+    build:
+      context: .
+      dockerfile: ./docker/node.dockerfile
+    container_name: sakura_node
+    ports:
+      - "3011:3000"
+    volumes:
+      - ./noyau_backend/realtime:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/sakura_logs
+      - PORT=3000
+    depends_on:
+      - mongodb
+    networks:
+      - sakura-network
+
+  # MongoDB NoSQL Service
+  mongodb:
+    image: mongo:6.0
+    container_name: sakura_mongo
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: sakura_logs
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - sakura-network
+
+  # Mongo Express for MongoDB management
+  mongo-express:
+    image: mongo-express:1.0.0-alpha.4
+    container_name: sakura_mexpress
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "false"
+      ME_CONFIG_MONGODB_AUTH_DATABASE: sakura_logs
+    ports:
+      - "8013:8081"
+    depends_on:
+      - mongodb
+    networks:
+      - sakura-network
+
+networks:
+  sakura-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  mongo_data:

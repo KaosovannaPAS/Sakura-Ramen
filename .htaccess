@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/css/ [OR]
+RewriteCond %{REQUEST_URI} ^/js/ [OR]
+RewriteCond %{REQUEST_URI} ^/img/
+RewriteRule ^(.*)$ interface_frontend/ressources/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]

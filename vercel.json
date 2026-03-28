@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.7.1",
+      "includeFiles": "{noyau_backend/**,interface_frontend/**,vendor/**,.env}"
+    }
+  },
+  "routes": [
+    { "src": "/css/(.*)", "dest": "/interface_frontend/ressources/css/$1" },
+    { "src": "/js/(.*)", "dest": "/interface_frontend/ressources/js/$1" },
+    { "src": "/img/(.*)", "dest": "/interface_frontend/ressources/images/$1" },
+    { "src": "/fonts/(.*)", "dest": "/interface_frontend/ressources/fonts/$1" },
+    { "src": "/(.*)", "dest": "/api/index.php" }
+  ]
+}

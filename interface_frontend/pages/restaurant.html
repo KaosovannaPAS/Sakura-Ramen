@@ -1,0 +1,69 @@
+<section class="page-hero">
+    <div class="container">
+        <h1 class="center">Le Restaurant</h1>
+    </div>
+</section>
+
+<section class="story container">
+    <div class="story-block">
+        <div class="story-img">
+            <div class="img-placeholder" style="background-image: url('/img/restaurant_cuisine.jpg'); background-size: cover; background-position: center; filter: brightness(0.8); height: 500px; border-radius: 4px;" role="img" aria-label="Notre équipe en pleine préparation culinaire dans la cuisine ouverte"></div>
+        </div>
+        <article class="story-content">
+            <h2>Une immersion au cœur du Japon</h2>
+            <p>Sakura Ramen n'est pas qu'un restaurant, c'est un voyage. Inspiré par les échoppes traditionnelles de Kyoto, notre espace a été pensé pour favoriser le calme, la contemplation et bien sûr, le plaisir du goût.</p>
+            <p>Notre cuisine ouverte vous permet d'observer chaque étape de la préparation : de la découpe précise du Chashu au dressage minutieux de votre bol.</p>
+        </div>
+        </article>
+    </div>
+
+    <div class="story-block reverse">
+        <div class="story-img">
+            <div class="img-placeholder" style="background-image: url('/img/restaurant_ingredients.jpg'); background-size: cover; background-position: center; filter: brightness(0.8); height: 500px; border-radius: 4px;" role="img" aria-label="Gros plan sur des ingrédients frais de saison : légumes et œufs ajitama"></div>
+        </div>
+        <article class="story-content">
+            <h2>L'excellence du produit</h2>
+            <p>Nous croyons fermement au circuit court. Nos farines proviennent de minoteries locales, tandis que nos porcs et volailles sont élevés en plein air dans le Morbihan.</p>
+            <p>Chaque ingrédient est sélectionné pour sa fraîcheur et sa capacité à sublimer notre bouillon secret.</p>
+        </article>
+    </div>
+</section>
+
+<style>
+.page-hero { padding: 120px 0 60px; }
+
+.story-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+.story-block.reverse {
+    direction: rtl;
+}
+
+.story-block.reverse .story-content {
+    direction: ltr;
+}
+
+.story-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-pink);
+}
+
+.story-content p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 992px) {
+    .story-block, .story-block.reverse {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+</style>
